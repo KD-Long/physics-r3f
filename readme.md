@@ -1,9 +1,9 @@
-# [Macbook-Portfolio](https://macbook-portfolio.kyledlong.com)
+# [Physics-R3F](https://physics-r3f.kyledlong.com)
 
-This project was built in the progress of the [Three.js journey](https://threejs-journey.com) course, focusing on R3F and Drei.
+This project was built in the progress of the [Three.js journey](https://threejs-journey.com) course, focusing on R3F and react-three-rapier.
 <br>
 
-![macbook-portfolio-image](./public/macbook-portfolio-image.png)
+![physics-r3f-image](./public/physics-r3f-image.png)
 
 
 
@@ -31,13 +31,13 @@ This project is a basic static website created using HTML, CSS, and JavaScript. 
 1. Clone the repository:
 
 ```bash
-git clone https://github.com/KD-Long/macbook-portfolio.git
+git clone https://github.com/KD-Long/physics-r3f.git
 ```
 
 2. Install the dependencies:
 
 ```bash
-cd macbook-portfolio
+cd physics-r3f
 npm install
 ```
 

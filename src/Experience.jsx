@@ -4,6 +4,10 @@ import { InstancedRigidBodies, Physics, RigidBody, CuboidCollider, CylinderColli
 import { useMemo, useRef, useState, useEffect } from 'react'
 import { useFrame } from '@react-three/fiber'
 import * as THREE from 'three'
+import Hamburger from './Hamburger'
+import HamburgerB from './HamburgerB'
+
+import React from 'react'
 
 
 
@@ -15,15 +19,12 @@ export default function Experience() {
     // const [count, setCount] = useState(0);
     const [hitSound] = useState(() => { return new Audio('./hit.mp3') })
 
+    const ham = useGLTF('/hamburger.glb')
 
-    const cubeCount = 500;
+    const cubeCount = 200;
     const cubes = useRef()
 
-    // const ham = new useGLTF('./hamburger.glb')
-    const ham = new useGLTF('./burger2.glb')
-    ham.scene.scale.set(.25, 0.25, .25)
-
-    console.log(ham)
+    const burgerArr = [...Array(10)]
 
 
     const cubeClick = () => {
@@ -79,19 +80,19 @@ export default function Experience() {
     // initial setup for instance bodies
     const instances = useMemo(() => {
         const instances = []
-        for(let i =0;i<cubeCount;i++){
+        for (let i = 0; i < cubeCount; i++) {
 
             instances.push({
-                key: 'instance_' +i,
+                key: 'instance_' + i,
                 position: [
-                    (Math.random()-0.5)*16,
-                    6+ i * 0.3,
-                    (Math.random()-0.5)*16],
-                rotation: [0,0,0]
+                    (Math.random() - 0.5) * 16,
+                    6 + i * 0.3,
+                    (Math.random() - 0.5) * 16],
+                rotation: [0, 0, 0]
             })
         }
         return instances
-    },[])
+    }, [])
 
 
     return <>
@@ -166,21 +167,7 @@ export default function Experience() {
 
             > */}
 
-            {/* Hamburger model */}
-            <RigidBody
-                // colliders='hull'
-                colliders={false}
-                position={[0, 5, 0]}
-                gravityScale={1}
 
-            >
-                {/* <CylinderCollider args={[.37,.70]} position={[0,0.1,0]}/> */}
-                <MeshCollider
-                    type='hull'
-                >
-                    <primitive object={ham.scene} />
-                </MeshCollider>
-            </RigidBody>
             {/* </PivotControls> */}
 
 
@@ -228,9 +215,9 @@ export default function Experience() {
             {/* Many cubes  */}
 
             <InstancedRigidBodies instances={instances}>
-                <instancedMesh  castShadow args={[null, null, cubeCount]}>
+                <instancedMesh castShadow args={[null, null, cubeCount]}>
                     <boxGeometry />
-                    <meshNormalMaterial/>
+                    <meshNormalMaterial />
 
                 </instancedMesh>
             </InstancedRigidBodies>
@@ -242,7 +229,33 @@ export default function Experience() {
 
             </instancedMesh> */}
 
-        </Physics>
+
+
+
+            {burgerArr.map((value, i) => {
+                return <Hamburger key={i}
+                    position={[
+                        (Math.random() - 0.5) * 16,
+                        6 + i * 6.3,
+                        (Math.random() - 0.5) * 16
+                    ]}
+                    scale={(i * .55 * .5) / 10}
+                />
+            })}
+            {burgerArr.map((value, i) => {
+                return <HamburgerB key={'B' + i} position={[
+                    (Math.random() - 0.5) * 16,
+                    6 + i * 6.3,
+                    (Math.random() - 0.5) * 16
+                ]}
+                    scale={(i * .55 * .5) / 10}
+                />
+            })}
+
+
+
+
+        </Physics >
 
     </>
 }
